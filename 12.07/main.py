@@ -26,19 +26,55 @@ def random_word():
 
 def word():
     my_word=input("Виберіть: камінь, ножиці чи папір ")
-    return my_word.lower()
+    return my_word.lower().strip()
 
-def game():
+def start():
+    choise=input("Введіть 'comp', щоб почати гру з комп`ютера, 'player', щоб почати з себе: ")
+    if choise.lower().strip() == 'player':
+        game_player()
+    if choise.lower().strip() == 'comp':
+        game_comp()
+    else:
+        print("Ви ввели щось не те")
+        
+def game_player():
     my_word=word()
     rand_word=random_word()
     game_list=['камінь', 'ножиці', 'папір']
     if my_word == game_list[0] and rand_word == game_list[0] or my_word == game_list[1] and rand_word == game_list[1] or my_word == game_list[2] and rand_word == game_list[2]:
         print("Нічия")
+        print("Ви обрали: ", my_word)
+        print("Комп'ютер обрав: ", rand_word)
     if my_word == game_list[0] and rand_word == game_list[1] or my_word == game_list[1] and rand_word == game_list[2] or my_word == game_list[2] and rand_word == game_list[0]:
         print("Ви виграли!")
+        print("Ви обрали: ", my_word)
+        print("Комп'ютер обрав: ", rand_word)
     if my_word == game_list[1] and rand_word == game_list[0] or my_word == game_list[2] and rand_word == game_list[1] or my_word == game_list[0] and rand_word == game_list[2]:
         print("Виграв комп'ютер")
-    print("Ви обрали: ", my_word)
-    print("Комп'ютер обрав: ", rand_word)
-    
-# game()
+        print("Ви обрали: ", my_word)
+        print("Комп'ютер обрав: ", rand_word)
+    if my_word not in game_list:
+        print("Ви ввели щось не те")
+
+def game_comp():
+    rand_word=random_word()
+    print("Комп'ютер зробив свій вибір")
+    my_word=word()
+
+    game_list=['камінь', 'ножиці', 'папір']
+    if my_word == game_list[0] and rand_word == game_list[0] or my_word == game_list[1] and rand_word == game_list[1] or my_word == game_list[2] and rand_word == game_list[2]:
+        print("Нічия")  
+        print("Комп'ютер обрав: ", rand_word)
+        print("Ви обрали: ", my_word)
+    if my_word == game_list[0] and rand_word == game_list[1] or my_word == game_list[1] and rand_word == game_list[2] or my_word == game_list[2] and rand_word == game_list[0]:
+        print("Ви виграли!")
+        print("Комп'ютер обрав: ", rand_word)
+        print("Ви обрали: ", my_word)
+    if my_word == game_list[1] and rand_word == game_list[0] or my_word == game_list[2] and rand_word == game_list[1] or my_word == game_list[0] and rand_word == game_list[2]:
+        print("Виграв комп'ютер")
+        print("Комп'ютер обрав: ", rand_word)
+        print("Ви обрали: ", my_word)
+    if my_word not in game_list:
+        print("Ви ввели щось не те")
+
+start()
